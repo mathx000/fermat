@@ -4,12 +4,14 @@ import { Button } from "../components/Button";
 import type { LayoutContext } from "../components/Layout";
 import { ProductIllustration } from "../components/ProductIllustration";
 import { useProducts } from "../hooks/useProducts";
+import { useCart } from "../lib/cart";
 import { whatsappUrl } from "../lib/whatsapp";
 
 export default function ProductPage() {
   const { ref } = useParams();
   const { openQuote } = useOutletContext<LayoutContext>();
   const products = useProducts();
+  const cart = useCart();
   const product = products.find(p => p.ref === ref);
 
   if (!product) {
@@ -51,6 +53,7 @@ export default function ProductPage() {
             <p className="mt-1 flex items-center gap-2 text-sm"><span className={`h-2.5 w-2.5 ${product.inStock ? "bg-emerald-600" : "bg-betao"}`} />{product.inStock ? "Disponível" : "Sob encomenda"}</p>
             <div className="mt-5 flex flex-wrap gap-3">
               <button onClick={() => openQuote(product)} className="bg-fermat px-6 py-3.5 font-display text-lg font-bold uppercase tracking-wider text-white hover:bg-aco">Pedir preço</button>
+              <button onClick={() => cart.add([{ name: product.name, qty: 1 }])} className="border-2 border-aco px-6 py-3.5 font-display text-lg font-bold uppercase tracking-wider text-aco transition-colors hover:bg-aco hover:text-white">Adicionar ao carrinho</button>
               <Button href={whatsappUrl(`Olá, gostava de pedir preço de: ${product.name} (${product.ref}).`)} variant="dark">Falar no WhatsApp</Button>
             </div>
           </div>

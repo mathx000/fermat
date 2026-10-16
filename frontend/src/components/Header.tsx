@@ -1,5 +1,6 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useCart } from "../lib/cart";
 import { Wordmark } from "./Brand";
 
 const links = [["Quem somos", "/#quem-somos"], ["A marca", "/#historia-marca"], ["Produtos", "/catalogo"], ["Obra grossa", "/catalogo?grupo=Obra grossa"], ["Obra fina", "/catalogo?grupo=Obra fina"], ["Contactos", "/#contactos"]];
@@ -11,6 +12,7 @@ function NavItem({ href, className, onClick, children }: { href: string; classNa
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const { count } = useCart();
   return (
     <header id="topo" className="sticky top-0 z-40 border-b border-white/10 bg-aco/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-3">
@@ -18,7 +20,11 @@ export function Header() {
         <nav className="hidden items-center gap-8 text-sm text-white/80 lg:flex" aria-label="Principal">
           {links.map(([label, href]) => <NavItem key={label} href={href} className="hover:text-white">{label}</NavItem>)}
         </nav>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1 sm:gap-3">
+          <Link to="/carrinho" aria-label={count ? `Carrinho, ${count} ${count === 1 ? "item" : "itens"}` : "Carrinho"} className="relative p-2 text-white hover:text-fermat">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" aria-hidden="true"><path d="M2 3h3l2.5 12h11L21 7H6" /><circle cx="9" cy="20" r="1.5" /><circle cx="18" cy="20" r="1.5" /></svg>
+            {count > 0 && <span className="absolute -right-0.5 -top-0.5 grid h-5 min-w-5 place-items-center bg-fermat px-1 font-mono text-[11px] font-bold leading-none text-white">{count > 99 ? "99+" : count}</span>}
+          </Link>
           <Link to="/formulario" className="hidden bg-fermat px-5 py-2.5 font-display text-base font-bold uppercase tracking-wider text-white hover:bg-white hover:text-fermat sm:block">Pedir orçamento</Link>
           <button className="p-2 text-white lg:hidden" aria-label="Menu" aria-expanded={open} onClick={() => setOpen(!open)}>
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d={open ? "M5 5l14 14M19 5L5 19" : "M3 7h18M3 12h18M3 17h18"} /></svg>

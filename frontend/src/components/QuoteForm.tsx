@@ -1,14 +1,16 @@
 import { useState, type FormEvent } from "react";
+import { useCart } from "../lib/cart";
 import { whatsappUrl } from "../lib/whatsapp";
 import { MaterialPicker, type QuoteCategory, type QuoteItem } from "./MaterialPicker";
 
 const CATEGORIES: QuoteCategory[] = ["Obra grossa", "Obra fina", "Todos"];
 
-export function QuoteForm({ preset, onDone }: { preset?: string; onDone?: () => void }) {
+export function QuoteForm({ preset, presetItems, onDone, onSent }: { preset?: string; presetItems?: QuoteItem[]; onDone?: () => void; onSent?: () => void }) {
+  const cart = useCart();
   const [state, setState] = useState<"idle" | "sending" | "ok">("idle");
   const [error, setError] = useState("");
   const [category, setCategory] = useState<QuoteCategory>("Todos");
-  const [items, setItems] = useState<QuoteItem[]>(preset ? [{ name: preset, qty: 1 }] : []);
+  const [items, setItems] = useState<QuoteItem[]>(presetItems?.length ? presetItems : preset ? [{ name: preset, qty: 1 }] : []);
 
   const setQty = (name: string, qty: number) => setItems(list => list.map(item => item.name === name ? { ...item, qty: Math.max(1, Math.min(9999, qty || 1)) } : item));
 
@@ -26,6 +28,7 @@ export function QuoteForm({ preset, onDone }: { preset?: string; onDone?: () => 
       });
       if (!response.ok) throw new Error((await response.json()).error);
       setState("ok");
+      onSent?.();
     } catch (caught) {
       setError((caught as Error).message || "Não foi possível enviar. Tente o WhatsApp.");
       setState("idle");
@@ -40,7 +43,7 @@ export function QuoteForm({ preset, onDone }: { preset?: string; onDone?: () => 
   const inputClass = "w-full border-2 border-aco/80 bg-white px-4 py-3 outline-none focus:border-fermat";
   const summary = items.length ? items.map(item => `${item.qty}× ${item.name}`).join(", ") : "material";
   return (
-    <form onSubmit={submit} className="grid grid-cols-[minmax(0,1fr)] gap-4 p-5 sm:p-8">
+    <form onSubmit={submit} className="grid grid-cols-[minmax(0,1fr)] gap-4 px-5 pb-5 sm:px-8 sm:pb-8">
       <h3 className="font-display text-4xl font-black uppercase">Peça preço</h3>
       <p className="-mt-2 text-grafite">Diga o que precisa. Alguém da nossa equipa liga-lhe de volta.</p>
       <label>Nome *<input name="name" required autoComplete="name" className={inputClass} /></label>
@@ -80,6 +83,7 @@ export function QuoteForm({ preset, onDone }: { preset?: string; onDone?: () => 
       {error && <p role="alert" className="font-semibold text-fermat">{error}</p>}
       <div className="flex flex-wrap items-center gap-4">
         <button disabled={state === "sending"} className="bg-fermat px-6 py-3.5 font-display text-lg font-bold uppercase tracking-wider text-white hover:bg-aco disabled:opacity-60">{state === "sending" ? "A enviar…" : "Enviar pedido"}</button>
+        <button type="button" onClick={() => { cart.add(items); if (items.length) onDone?.(); }} className="border-2 border-aco px-5 py-3 font-display text-lg font-bold uppercase tracking-wider text-aco transition-colors hover:bg-aco hover:text-white">Adicionar ao carrinho</button>
         <span>ou</span><a href={whatsappUrl(`Olá, quero preço de: ${summary}`)} target="_blank" rel="noreferrer" className="font-semibold underline decoration-fermat decoration-2 underline-offset-4">Falar no WhatsApp</a>
       </div>
     </form>

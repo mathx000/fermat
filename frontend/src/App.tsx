@@ -1,5 +1,7 @@
 import { Route, Routes } from "react-router-dom";
+import { CartProvider } from "./lib/cart";
 import { Layout } from "./components/Layout";
+import CartPage from "./pages/CartPage";
 import CatalogPage from "./pages/CatalogPage";
 import ContactPage from "./pages/ContactPage";
 import HomePage from "./pages/HomePage";
@@ -7,14 +9,17 @@ import ProductPage from "./pages/ProductPage";
 
 export default function App() {
   return (
+    <CartProvider>
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="catalogo" element={<CatalogPage />} />
         <Route path="produtos/:ref" element={<ProductPage />} />
+        <Route path="carrinho" element={<CartPage />} />
         <Route path="formulario" element={<ContactPage />} />
         <Route path="*" element={<HomePage />} />
       </Route>
     </Routes>
+    </CartProvider>
   );
 }

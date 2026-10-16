@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
+import { useCart } from "../lib/cart";
 import { Contact } from "../components/Contact";
 
 export default function ContactPage() {
+  const cart = useCart();
   return (
     <>
       <div className="bg-aco py-2 text-center font-mono text-[10px] uppercase tracking-[.25em] text-betao">
@@ -16,7 +18,7 @@ export default function ContactPage() {
                     <p className="mt-2 text-grafite">Peça preço, mande a sua lista de material ou visite-nos em Vila Flor.</p>
         </div>
       </section>
-      <Contact />
+      <Contact items={cart.items} onSent={cart.clear} />
     </>
   );
 }
