@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Wordmark } from "./Brand";
 
@@ -25,7 +25,7 @@ export function Header() {
           </button>
         </div>
       </div>
-      {open && <nav className="grid border-t border-white/10 bg-aco px-5 pb-4 lg:hidden">{links.map(([label, href]) => <NavItem key={label} href={href} onClick={() => setOpen(false)} className="border-b border-white/10 py-3 text-white/90">{label}</NavItem>)}</nav>}
+      {open && <nav className="grid border-t border-white/10 bg-aco px-5 pb-4 lg:hidden">{links.map(([label, href]) => <NavItem key={label} href={href} onClick={() => setOpen(false)} className="border-b border-white/10 py-3 text-white/90">{label}</NavItem>)}<Link to="/formulario" onClick={() => setOpen(false)} className="mt-4 bg-fermat px-5 py-3 text-center font-display text-lg font-bold uppercase tracking-wider text-white">Pedir orçamento</Link></nav>}
     </header>
   );
 }

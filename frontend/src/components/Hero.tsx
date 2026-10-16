@@ -1,4 +1,4 @@
-import { Button } from "./Button";
+﻿import { Button } from "./Button";
 import { AppIcon } from "./Brand";
 import { whatsappUrl } from "../lib/whatsapp";
 
@@ -8,7 +8,7 @@ export function Hero({ onQuote }: { onQuote: () => void }) {
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-16 md:py-24 lg:grid-cols-[1.4fr_1fr]">
         <div>
           <p className="mb-5 font-mono text-xs text-betao">Vila Flor · Bragança · desde 2001</p>
-          <h1 className="font-display text-[clamp(4.5rem,13vw,11rem)] font-black uppercase leading-[.85]">Material<br /><span className="text-fermat">firme.</span></h1>
+          <h1 className="font-display text-[clamp(3.25rem,13vw,11rem)] font-black uppercase leading-[.85]">Material<br /><span className="text-fermat">firme.</span></h1>
           <p className="mt-8 max-w-md text-lg text-white/75">Bloco, tijolo, cofragem, ladrilhos, sanitários e tintas. Diga-nos o que a obra pede. Nós levamos.</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button href="#catalogo" variant="red">Ver catálogo</Button>

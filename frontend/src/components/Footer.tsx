@@ -1,4 +1,4 @@
-import { Wordmark } from "./Brand";
+﻿import { Wordmark } from "./Brand";
 
 const ICONS: Record<string, JSX.Element> = {
   Instagram: <><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" /></>,
@@ -10,7 +10,7 @@ const ICONS: Record<string, JSX.Element> = {
 
 export function Footer() {
   return (
-    <footer className="bg-aco text-white">
+    <footer className="bg-aco pb-14 text-white sm:pb-0">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-6 px-5 py-10"><Wordmark light />
         <p className="font-display text-3xl font-bold uppercase text-fermat">Fermat, material firme.</p></div>
       <div className="mx-auto grid max-w-7xl gap-px bg-white/10 px-0 sm:grid-cols-2 lg:grid-cols-5">

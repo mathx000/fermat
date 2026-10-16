@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import type { Product } from "../../shared/products";
 import { whatsappUrl } from "../lib/whatsapp";
@@ -34,7 +34,7 @@ export function Layout() {
       <main><Outlet context={{ openQuote } satisfies LayoutContext} /></main>
       <Footer />
       {modal && <QuoteModal product={modal.product} onClose={() => setModal(null)} />}
-      <a href={whatsappUrl()} target="_blank" rel="noreferrer" aria-label="Falar no WhatsApp" className="fixed bottom-5 right-5 z-30 bg-fermat px-5 py-3 font-display text-lg font-bold uppercase tracking-wider text-white shadow-lg hover:bg-aco">WhatsApp</a>
+      <a href={whatsappUrl()} target="_blank" rel="noreferrer" aria-label="Falar no WhatsApp" className="fixed bottom-3 right-3 z-30 bg-fermat px-3 py-2 font-display text-base sm:bottom-5 sm:right-5 sm:px-5 sm:py-3 sm:text-lg font-bold uppercase tracking-wider text-white shadow-lg hover:bg-aco">WhatsApp</a>
     </>
   );
 }

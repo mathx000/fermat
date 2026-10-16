@@ -6,8 +6,8 @@ import { whatsappUrl } from "../lib/whatsapp";
 export function Contact() {
   return (
     <section className="mx-auto grid max-w-7xl gap-10 px-5 py-16 lg:grid-cols-2">
-      <div className="bg-white"><QuoteForm /></div>
-      <div className="flex flex-col justify-between gap-8">
+      <div className="min-w-0 bg-white"><QuoteForm /></div>
+      <div className="flex min-w-0 flex-col justify-between gap-8">
         <div><h2 className="font-display text-5xl font-black uppercase md:text-7xl">Tem uma lista de material?</h2>
           <p className="mt-4 max-w-md text-lg">Mande por WhatsApp. Nós fazemos as contas.</p>
           <div className="mt-6"><Button href={whatsappUrl()} variant="dark">WhatsApp</Button></div>

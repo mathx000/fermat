@@ -40,7 +40,7 @@ export function QuoteForm({ preset, onDone }: { preset?: string; onDone?: () => 
   const inputClass = "w-full border-2 border-aco/80 bg-white px-4 py-3 outline-none focus:border-fermat";
   const summary = items.length ? items.map(item => `${item.qty}× ${item.name}`).join(", ") : "material";
   return (
-    <form onSubmit={submit} className="grid gap-4 p-8">
+    <form onSubmit={submit} className="grid gap-4 p-5 sm:p-8">
       <h3 className="font-display text-4xl font-black uppercase">Peça preço</h3>
       <p className="-mt-2 text-grafite">Diga o que precisa. Alguém da nossa equipa liga-lhe de volta.</p>
       <label>Nome *<input name="name" required autoComplete="name" className={inputClass} /></label>
