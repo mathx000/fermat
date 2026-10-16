@@ -40,7 +40,7 @@ export function QuoteForm({ preset, onDone }: { preset?: string; onDone?: () => 
   const inputClass = "w-full border-2 border-aco/80 bg-white px-4 py-3 outline-none focus:border-fermat";
   const summary = items.length ? items.map(item => `${item.qty}× ${item.name}`).join(", ") : "material";
   return (
-    <form onSubmit={submit} className="grid gap-4 p-5 sm:p-8">
+    <form onSubmit={submit} className="grid grid-cols-[minmax(0,1fr)] gap-4 p-5 sm:p-8">
       <h3 className="font-display text-4xl font-black uppercase">Peça preço</h3>
       <p className="-mt-2 text-grafite">Diga o que precisa. Alguém da nossa equipa liga-lhe de volta.</p>
       <label>Nome *<input name="name" required autoComplete="name" className={inputClass} /></label>
@@ -58,11 +58,11 @@ export function QuoteForm({ preset, onDone }: { preset?: string; onDone?: () => 
         <MaterialPicker category={category} items={items} onChange={setItems} inputClass={inputClass} />
       </div>
 
-      <fieldset>
+      <fieldset className="min-w-0">
         <legend>Quantidade e local da obra</legend>
         <ul className="mt-1 divide-y divide-aco/15 border-2 border-aco/80 bg-white">
           {items.map(item => (
-            <li key={item.name} className="flex items-center justify-between gap-3 px-4 py-2">
+            <li key={item.name} className="flex flex-wrap items-center justify-between gap-3 px-4 py-2">
               <span className="min-w-0 flex-1 truncate" title={item.name}>{item.name}</span>
               <span className="flex shrink-0 items-center">
                 <button type="button" onClick={() => setQty(item.name, item.qty - 1)} disabled={item.qty <= 1} aria-label={`Diminuir ${item.name}`} className="h-9 w-9 bg-aco text-xl text-white hover:bg-fermat disabled:opacity-30">−</button>

@@ -5,7 +5,7 @@ import { whatsappUrl } from "../lib/whatsapp";
 
 export function Contact() {
   return (
-    <section className="mx-auto grid max-w-7xl gap-10 px-5 py-16 lg:grid-cols-2">
+    <section className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)] gap-10 px-5 py-16 lg:grid-cols-2">
       <div className="min-w-0 bg-white"><QuoteForm /></div>
       <div className="flex min-w-0 flex-col justify-between gap-8">
         <div><h2 className="font-display text-5xl font-black uppercase md:text-7xl">Tem uma lista de material?</h2>

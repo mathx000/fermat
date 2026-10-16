@@ -114,19 +114,19 @@ export default function CatalogPage() {
 
 function ProductCard({ product, onQuote }: { product: Product; onQuote: (p?: Product) => void }) {
   return (
-    <li className="group flex flex-col border border-aco/15 bg-white p-2.5 transition-colors hover:border-aco/40">
+    <li className="group relative flex flex-col border border-aco/15 bg-white p-2.5 transition-colors hover:border-aco/40">
       <div className="h-36 bg-cal"><ProductIllustration product={product} /></div>
       <div className="flex flex-1 flex-col justify-between p-3">
         <div>
           <p className="font-mono text-[10px] font-bold uppercase tracking-[.2em] text-fermat">{product.category}</p>
-          <h2 className="mt-1.5 font-display text-2xl font-bold leading-tight">{product.name}</h2>
+          <h2 className="mt-1.5 font-display text-2xl font-bold leading-tight"><Link to={`/produtos/${product.ref}`} className="after:absolute after:inset-0 hover:text-fermat">{product.name}</Link></h2>
           <p className="mt-1 font-mono text-xs text-grafite/70">{product.unit} · {product.spec}</p>
         </div>
         <div className="mt-5 flex items-center justify-between gap-2">
           <span className={`flex items-center gap-2 text-xs font-semibold ${product.inStock ? "text-emerald-700" : "text-grafite/70"}`}>
             <span className={`h-2 w-2 rounded-full ${product.inStock ? "bg-emerald-600" : "bg-betao"}`} />{product.inStock ? "Disponível" : "Sob encomenda"}
           </span>
-          <button onClick={() => onQuote(product)} className="bg-aco px-4 py-2 font-display text-sm font-bold uppercase tracking-wider text-white hover:bg-fermat">Pedir preço</button>
+          <button onClick={() => onQuote(product)} className="relative z-10 bg-aco px-4 py-2 font-display text-sm font-bold uppercase tracking-wider text-white hover:bg-fermat">Pedir preço</button>
         </div>
       </div>
     </li>

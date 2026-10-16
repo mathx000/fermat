@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { CATEGORIES, PRODUCTS, type Category, type Product } from "../../shared/products";
 import { Button } from "./Button";
 import { whatsappUrl } from "../lib/whatsapp";
@@ -36,15 +37,15 @@ export function Catalog({ onQuote }: { onQuote: (product?: Product) => void }) {
       </div>
       <ul className="mt-8 grid gap-px bg-aco/15 sm:grid-cols-2 lg:grid-cols-3">
         {filteredProducts.slice(0, 6).map(product => (
-          <li key={product.ref} className="group flex flex-col justify-between bg-cal p-6 transition-colors hover:bg-white">
+          <li key={product.ref} className="group relative flex flex-col justify-between bg-cal p-6 transition-colors hover:bg-white">
             <div>
               <div className="flex items-center justify-between font-mono text-xs text-grafite/70"><span>{product.group} · {product.category}</span><span>{product.ref}</span></div>
-              <h3 className="mt-5 font-display text-3xl font-bold leading-tight">{product.name}</h3>
+              <h3 className="mt-5 font-display text-3xl font-bold leading-tight"><Link to={`/produtos/${product.ref}`} className="after:absolute after:inset-0 hover:text-fermat">{product.name}</Link></h3>
               <p className="mt-2 font-mono text-sm text-grafite/70">{product.unit} · {product.spec}</p>
             </div>
             <div className="mt-8 flex items-center justify-between">
               <span className="flex items-center gap-2 text-sm"><span className={`h-2.5 w-2.5 ${product.inStock ? "bg-emerald-600" : "bg-betao"}`} />{product.inStock ? "Disponível" : "Sob encomenda"}</span>
-              <button onClick={() => onQuote(product)} className="bg-aco px-4 py-2 font-display text-base font-bold uppercase tracking-wider text-white group-hover:bg-fermat">Pedir preço</button>
+              <button onClick={() => onQuote(product)} className="relative z-10 bg-aco px-4 py-2 font-display text-base font-bold uppercase tracking-wider text-white group-hover:bg-fermat">Pedir preço</button>
             </div>
           </li>
         ))}
