@@ -1,0 +1,8 @@
+@tailwind base; @tailwind components; @tailwind utilities;
+html { scroll-behavior: smooth; }
+body { @apply bg-cal text-aco font-sans antialiased; }
+:focus-visible { outline: 3px solid #C8102E; outline-offset: 2px; }
+.grid-blueprint { background-image: linear-gradient(#ffffff0d 1px, transparent 1px), linear-gradient(90deg, #ffffff0d 1px, transparent 1px); background-size: 48px 48px; }
+@keyframes lay { from { transform: translateY(-120%); opacity: 0; } to { transform: none; opacity: 1; } }
+.brick { animation: lay .55s cubic-bezier(.2,.8,.2,1) both; }
+@media (prefers-reduced-motion: reduce) { .brick { animation: none; } html { scroll-behavior: auto; } }
