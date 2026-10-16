@@ -1,6 +1,5 @@
 const facts = [["Desde", "2001"], ["Sede", "Vila Flor · Bragança"], ["Atividade", "Construção, bricolage, sanitários e ladrilhos"], ["Empresa", "Irmãos Mário & Jorge Fernandes, Lda."]];
 const values = [["Forte", "Letra pesada, cor de obra. Vê-se ao longe."], ["Atual", "Limpa. Longe do aspeto de armazém dos anos 90."], ["Franca", "Fala como se fala no estaleiro. Curto e certo."], ["Séria", "Promete o que entrega. Nem mais, nem menos."]];
-
 export function About() {
   return (
     <section id="quem-somos" className="scroll-mt-24 bg-cal px-5 py-20">
@@ -21,15 +20,6 @@ export function About() {
             </div>
           ))}
         </dl>
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {values.map(([title, description], i) => (
-            <article key={title} className="border-t-2 border-aco pt-3">
-              <span className="font-display text-4xl font-black text-fermat">0{i + 1}</span>
-              <h3 className="mt-1 font-display text-2xl font-bold uppercase">{title}</h3>
-              <p className="mt-2 text-sm text-grafite/75">{description}</p>
-            </article>
-          ))}
-        </div>
       </div>
     </section>
   );
