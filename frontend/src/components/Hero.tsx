@@ -1,4 +1,4 @@
-import { Button } from "./Button";
+﻿import { Button } from "./Button";
 import { AppIcon } from "./Brand";
 import { whatsappUrl } from "../lib/whatsapp";
 
@@ -14,7 +14,7 @@ export function Hero({ onQuote }: { onQuote: () => void }) {
           </div>
           <p className="mt-8 max-w-md text-lg text-white/75">Bloco, tijolo, cofragem, ladrilhos, sanitários e tintas. Diga-nos o que a obra pede. Nós levamos.</p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Button href="#catalogo" variant="red">Ver catálogo</Button>
+            <Button href="/catalogo" variant="red">Ver catálogo</Button>
             <Button href={whatsappUrl()} variant="ghost">Falar no WhatsApp</Button>
           </div>
           <dl className="mt-12 grid max-w-xl grid-cols-3 gap-px bg-white/15 text-left">
